@@ -22,6 +22,59 @@ class AccessibilityHelper {
     }
 
 
+
+    generateReport(results){
+
+
+        let report = "";
+
+
+        report += "<html><body>";
+
+        report += "<h1>Accessibility Report</h1>";
+
+        report +=
+        "<h2>Total Violations: "
+        + results.violations.length
+        + "</h2>";
+
+
+
+        results.violations.forEach(
+        violation => {
+
+
+            report +=
+            "<h3>"
+            + violation.id
+            + "</h3>";
+
+
+            report +=
+            "<p>"
+            + violation.description
+            + "</p>";
+
+
+            report +=
+            "<p>Impact: "
+            + violation.impact
+            + "</p>";
+
+
+        });
+
+
+
+        report += "</body></html>";
+
+
+        return report;
+
+
+    }
+
+
 }
 
 
