@@ -1,36 +1,48 @@
 const { test, expect } = require('@playwright/test');
 
+const fs = require('fs');
+
 const AccessibilityHelper =
 require('../utils/accessibilityHelper');
 
 
-test('Validate WCAG accessibility compliance', async ({page})=>{
+
+test('Validate WCAG accessibility compliance',
+async ({page})=>{
 
 
-    await page.goto(
-    'https://www.saucedemo.com/'
-    );
-
-
-    const accessibility =
-    new AccessibilityHelper();
-
-
-    const results =
-    await accessibility.scanPage(page);
+await page.goto(
+'https://www.saucedemo.com/'
+);
 
 
 
-    console.log(
-    "Accessibility Violations:",
-    results.violations.length
-    );
+const accessibility =
+new AccessibilityHelper();
 
 
 
-    expect(
-    results.violations
-    ).toEqual([]);
+const results =
+await accessibility.scanPage(page);
+
+
+
+const report =
+accessibility.generateReport(results);
+
+
+
+fs.writeFileSync(
+'accessibility-report.html',
+report
+);
+
+
+
+expect(
+results.violations
+).toEqual([]);
+
 
 
 });
