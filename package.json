@@ -1,0 +1,12 @@
+{
+  "name": "accessibility-testing-framework",
+  "version": "1.0.0",
+  "description": "Playwright accessibility automation framework using Axe-core",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.45.0",
+    "@axe-core/playwright": "^4.9.1"
+  }
+}
