@@ -1,0 +1,78 @@
+name: Accessibility Automation Tests
+
+
+on:
+
+  push:
+
+    branches:
+      - main
+
+
+  pull_request:
+
+    branches:
+      - main
+
+
+
+jobs:
+
+
+  accessibility-test:
+
+
+    runs-on: ubuntu-latest
+
+
+
+    steps:
+
+
+    - name: Checkout Code
+
+      uses: actions/checkout@v4
+
+
+
+    - name: Setup Node
+
+      uses: actions/setup-node@v4
+
+      with:
+
+        node-version: 20
+
+
+
+    - name: Install Dependencies
+
+      run: npm install
+
+
+
+    - name: Install Playwright Browser
+
+      run: npx playwright install
+
+
+
+    - name: Execute Accessibility Tests
+
+      run: npm test
+
+
+
+    - name: Upload Reports
+
+      if: always()
+
+      uses: actions/upload-artifact@v4
+
+      with:
+
+        name: accessibility-report
+
+        path: |
+          accessibility-report.html
+          reports/
