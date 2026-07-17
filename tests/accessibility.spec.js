@@ -37,7 +37,20 @@ fs.writeFileSync(
 report
 );
 
+if(results.violations.length > 0){
 
+
+    await page.screenshot({
+
+        path:
+        './reports/accessibility-failure.png',
+
+        fullPage:true
+
+    });
+
+
+}
 
 expect(
 results.violations
